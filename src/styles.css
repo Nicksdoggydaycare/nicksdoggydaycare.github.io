@@ -204,7 +204,7 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
   color: var(--white);
   background:
     linear-gradient(to top, rgba(16,31,24,.72), rgba(16,31,24,.04) 65%),
-    url("assets/images/property.jpg") center/cover no-repeat,
+    url("/assets/images/property.jpg") center/cover no-repeat,
     #607c65;
 }
 .panel-copy { max-width: 760px; }
@@ -238,8 +238,8 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
 }
 .split-panel::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,24,18,.78), rgba(11,24,18,.08)); }
 .split-panel > div { position: relative; z-index: 1; max-width: 600px; }
-.split-daycare { background-image: url("assets/images/daycare.jpg"); background-color: #6b7d6b; }
-.split-boarding { background-image: url("assets/images/boarding.jpg"); background-color: #5f5148; }
+.split-daycare { background-image: url("/assets/images/daycare.jpg"); background-color: #6b7d6b; }
+.split-boarding { background-image: url("/assets/images/boarding.jpg"); background-color: #5f5148; }
 .text-link { display: inline-flex; gap: .6rem; border-bottom: 1px solid rgba(255,255,255,.45); padding-bottom: .35rem; margin-top: 1rem; }
 
 .timeline {
@@ -319,7 +319,7 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
   color: var(--white);
   text-align: center;
   background:
-    url("assets/images/final-cta.jpg") center/cover no-repeat,
+    url("/assets/images/final-cta.jpg") center/cover no-repeat,
     #405647;
 }
 .final-overlay { position: absolute; inset: 0; background: rgba(13,28,20,.56); }
