@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Home-style dog daycare and overnight boarding on natural green space, with complimentary transportation throughout Jacksonville." />
+  <title>Nick's Doggy Daycare | Jacksonville Dog Daycare & Boarding</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#top" aria-label="Nick's Doggy Daycare home">
+      <span class="brand-main">Nick's</span>
+      <span class="brand-sub">Doggy Daycare</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span>
+      <span class="sr-only">Open navigation</span>
+    </button>
+
+    <nav class="site-nav" id="siteNav">
+      <a href="#property">Property</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a class="button button-small button-light" href="#contact">Book a Stay</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Welcome to Nick's Doggy Daycare">
+      <video class="hero-media" autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
+        <source src="assets/video/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-fallback" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content reveal">
+        <p class="eyebrow">Home-style dog care in Jacksonville</p>
+        <h1>Every dog deserves room to run.<br>Every owner deserves peace of mind.</h1>
+        <p class="hero-copy">
+          Daycare and overnight boarding on natural green space,
+          with complimentary transportation.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#contact">Book a Stay</a>
+          <a class="button button-ghost" href="#property">Explore the Property</a>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#forecast" aria-label="Discover more">
+        <span>Discover</span>
+        <span class="scroll-line"></span>
+      </a>
+    </section>
+
+    <section class="forecast-section" id="forecast">
+      <div class="forecast-card reveal">
+        <div>
+          <p class="eyebrow dark">Today at the property</p>
+          <h2>Today's Play Forecast</h2>
+        </div>
+        <div class="forecast-main">
+          <span class="weather-icon" id="weatherIcon">☀</span>
+          <span class="forecast-temp" id="forecastTemp">--°</span>
+          <div>
+            <p class="forecast-status" id="forecastStatus">Checking today's weather…</p>
+            <p class="forecast-note" id="forecastNote">Jacksonville, Florida</p>
+          </div>
+        </div>
+        <div class="activity-list" id="activityList">
+          <span>Fetch</span>
+          <span>Nature time</span>
+          <span>Shade breaks</span>
+          <span>Fresh water</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-section section-padding">
+      <div class="section-grid">
+        <div class="reveal">
+          <p class="eyebrow dark">A different kind of dog care</p>
+          <h2>A home away from home.</h2>
+        </div>
+        <p class="large-copy reveal">
+          Natural grass, open air, room to explore, and a calm home-style environment—far from the concrete and noise of an office plaza.
+        </p>
+      </div>
+    </section>
+
+    <section class="feature-image-section" id="property">
+      <div class="image-panel meadow-panel reveal">
+        <div class="panel-copy">
+          <p class="eyebrow">The Meadow</p>
+          <h2>Over half an acre of fenced green space.</h2>
+          <p>Room to run. Room to explore. Room to simply be a dog.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits section-padding" id="experiences">
+      <div class="section-heading reveal">
+        <p class="eyebrow dark">Why families choose us</p>
+        <h2>Care designed around your dog—and your life.</h2>
+      </div>
+
+      <div class="benefit-grid">
+        <article class="benefit-card reveal">
+          <span class="number">01</span>
+          <h3>Natural Space</h3>
+          <p>Real grass, fresh air, shade, and space to move freely.</p>
+        </article>
+        <article class="benefit-card reveal">
+          <span class="number">02</span>
+          <h3>Home-Style Care</h3>
+          <p>A more personal and comfortable alternative to an industrial kennel.</p>
+        </article>
+        <article class="benefit-card reveal">
+          <span class="number">03</span>
+          <h3>Free Transportation</h3>
+          <p>We handle pickup and drop-off so your day keeps moving.</p>
+        </article>
+        <article class="benefit-card reveal">
+          <span class="number">04</span>
+          <h3>Peace of Mind</h3>
+          <p>Attentive supervision, dependable communication, and thoughtful care.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="split-section">
+      <div class="split-panel split-daycare reveal">
+        <div>
+          <p class="eyebrow">For busy professionals</p>
+          <h2>Your day is busy enough.<br>We'll handle the drive.</h2>
+          <p>Daycare with complimentary pickup and drop-off throughout the service area.</p>
+          <a href="#contact" class="text-link">Ask about daycare <span>→</span></a>
+        </div>
+      </div>
+      <div class="split-panel split-boarding reveal">
+        <div>
+          <p class="eyebrow">For frequent travelers</p>
+          <h2>Your dog's vacation<br>while you're on yours.</h2>
+          <p>Comfortable overnight care in a peaceful home environment.</p>
+          <a href="#contact" class="text-link">Ask about boarding <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day-section section-padding">
+      <div class="section-heading reveal">
+        <p class="eyebrow dark">A day at Nick's</p>
+        <h2>A day well spent.</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal"><span>01</span><h3>Morning pickup</h3><p>A convenient start to the day.</p></div>
+        <div class="timeline-item reveal"><span>02</span><h3>Outdoor play</h3><p>Time to run, explore, and socialize.</p></div>
+        <div class="timeline-item reveal"><span>03</span><h3>Water and rest</h3><p>Fresh water and calm shade breaks.</p></div>
+        <div class="timeline-item reveal"><span>04</span><h3>Ride home</h3><p>Happy, exercised, and ready to relax.</p></div>
+      </div>
+    </section>
+
+    <section class="gallery section-padding" id="gallery">
+      <div class="section-heading reveal">
+        <p class="eyebrow dark">Life at Nick's</p>
+        <h2>The property is the experience.</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item tall reveal"><span>Add portrait dog photo</span></div>
+        <div class="gallery-item wide reveal"><span>Add dogs running photo</span></div>
+        <div class="gallery-item reveal"><span>Add property detail</span></div>
+        <div class="gallery-item reveal"><span>Add transportation photo</span></div>
+      </div>
+    </section>
+
+    <section class="pricing-section section-padding">
+      <div class="section-heading reveal">
+        <p class="eyebrow dark">Simple pricing</p>
+        <h2>Clear care. No surprises.</h2>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="pricing-card reveal">
+          <p class="eyebrow dark">Daycare</p>
+          <h3>$75 <span>/ first dog</span></h3>
+          <p>$55 second dog · $40 each additional dog</p>
+        </article>
+        <article class="pricing-card featured reveal">
+          <p class="eyebrow">Overnight boarding</p>
+          <h3>$100 <span>/ first dog</span></h3>
+          <p>$75 second dog · $50 each additional dog</p>
+        </article>
+        <article class="pricing-card reveal">
+          <p class="eyebrow dark">Baths</p>
+          <h3>From $30</h3>
+          <p>Free bath with five consecutive boarding days.</p>
+        </article>
+      </div>
+      <p class="pricing-note">Multi-dog discounts apply to dogs from the same household.</p>
+    </section>
+
+    <section class="faq-section section-padding" id="faq">
+      <div class="section-heading reveal">
+        <p class="eyebrow dark">Frequently asked questions</p>
+        <h2>Everything you need to feel prepared.</h2>
+      </div>
+      <div class="faq-list">
+        <details class="reveal">
+          <summary>Which areas do you serve?</summary>
+          <p>Jacksonville and Ponte Vedra. Transportation availability may vary based on route and schedule.</p>
+        </details>
+        <details class="reveal">
+          <summary>Is transportation included?</summary>
+          <p>Yes. Complimentary pickup and drop-off are included, subject to availability and service-area limits.</p>
+        </details>
+        <details class="reveal">
+          <summary>What should I pack for overnight boarding?</summary>
+          <p>We recommend your dog's normal food, feeding instructions, medications, and any comfort item you would like them to have.</p>
+        </details>
+        <details class="reveal">
+          <summary>How do I request a booking?</summary>
+          <p>Use the inquiry form below. We will confirm availability, transportation details, and any care requirements with you directly.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="final-cta" id="contact">
+      <div class="final-overlay"></div>
+      <div class="final-content reveal">
+        <p class="eyebrow">Ready when you are</p>
+        <h2>Give your dog a place they'll love coming back to.</h2>
+        <p>Tell us what you need and we will follow up with availability.</p>
+        <a class="button button-primary" href="mailto:hello@nicksdoggydaycare.com">Request a Stay</a>
+        <p class="placeholder-note">Replace this email with your real business email before launch.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <p class="footer-brand">Nick's Doggy Daycare</p>
+      <p>Happy pets. Peace of mind.</p>
+    </div>
+    <div>
+      <p>Jacksonville & Ponte Vedra</p>
+      <p>Daycare · Boarding · Baths · Transportation</p>
+    </div>
+    <p>© <span id="year"></span> Nick's Doggy Daycare</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
