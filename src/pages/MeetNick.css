@@ -1,0 +1,294 @@
+.meet-nick-page {
+  min-height: 100vh;
+  background: #f8f6f2;
+  color: #262626;
+}
+
+.meet-nick-hero-stage {
+  position: relative;
+  height: 125svh;
+  padding: 0 2vw;
+  background: #f8f6f2;
+}
+
+.meet-nick-hero {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  color: white;
+  transform-origin: center top;
+  will-change: transform, border-radius;
+}
+
+.meet-nick-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.meet-nick-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(12, 26, 19, .9),
+      rgba(12, 26, 19, .08) 65%
+    );
+}
+
+.meet-nick-back {
+  position: absolute;
+  z-index: 2;
+  top: 2rem;
+  left: 3vw;
+  width: fit-content;
+  color: white;
+  font-size: .82rem;
+  letter-spacing: .06em;
+  opacity: .9;
+  transition:
+    opacity .2s ease,
+    transform .2s ease;
+}
+
+.meet-nick-back:hover {
+  opacity: 1;
+  transform: translateX(-3px);
+}
+
+.meet-nick-hero-copy {
+  position: absolute;
+  z-index: 2;
+  left: 5vw;
+  bottom: 5rem;
+  width: min(950px, 88vw);
+  will-change: transform;
+}
+
+.meet-nick-hero-copy h1 {
+  max-width: 900px;
+  margin-bottom: 0;
+}
+
+.meet-nick-back {
+  width: fit-content;
+  font-size: .82rem;
+  letter-spacing: .06em;
+  opacity: .9;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.meet-nick-back:hover {
+  opacity: 1;
+  transform: translateX(-3px);
+}
+
+.meet-nick-hero-copy {
+  width: min(950px, 100%);
+}
+
+.meet-nick-hero-copy h1 {
+  max-width: 900px;
+  margin-bottom: 0;
+}
+
+.meet-nick-story {
+  background: #f8f6f2;
+}
+
+.meet-nick-layout {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.meet-nick-copy {
+  padding-top: 1rem;
+}
+
+.meet-nick-copy .eyebrow {
+  margin-bottom: 2rem;
+}
+
+.meet-nick-copy p:not(.eyebrow) {
+  margin-bottom: 1.7rem;
+  color: #555;
+  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+  line-height: 1.85;
+}
+
+.meet-nick-copy p:first-of-type:not(.eyebrow) {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #262626;
+  font-size: clamp(1.7rem, 2.6vw, 2.7rem);
+  line-height: 1.25;
+}
+
+.meet-nick-memory {
+  background: #eeeae3;
+}
+
+.meet-nick-memory-grid {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.meet-nick-memory-grid h2 {
+  max-width: 520px;
+}
+
+.meet-nick-childhood-image {
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #d9d5cd;
+}
+
+.meet-nick-childhood-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 980px) {
+  .meet-nick-layout,
+  .meet-nick-memory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meet-nick-primary-image {
+    position: relative;
+    top: auto;
+    min-height: 580px;
+  }
+
+  .meet-nick-primary-image img {
+    min-height: 580px;
+  }
+
+  .meet-nick-childhood-image,
+  .meet-nick-childhood-image img {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 640px) {
+  .meet-nick-hero {
+    min-height: 68svh;
+    padding: 1.4rem 1.25rem 3rem;
+    background-position: center 30%;
+  }
+
+  .meet-nick-primary-image,
+  .meet-nick-primary-image img {
+    min-height: 480px;
+    border-radius: 18px;
+  }
+
+  .meet-nick-childhood-image,
+  .meet-nick-childhood-image img {
+    min-height: 420px;
+    border-radius: 18px;
+  }
+
+  .meet-nick-copy p:not(.eyebrow) {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+@media (max-width: 640px) {
+  .meet-nick-hero-stage {
+    height: 112svh;
+    padding: 0 1rem;
+  }
+
+  .meet-nick-hero-copy {
+    left: 1.25rem;
+    bottom: 3rem;
+    width: calc(100% - 2.5rem);
+  }
+
+  .meet-nick-back {
+    top: 1.4rem;
+    left: 1.25rem;
+  }
+
+  .meet-nick-hero-image {
+    object-position: center 30%;
+  }
+}}
+
+
+.meet-nick-childhood-content {
+  display: grid;
+  gap: 2rem;
+}
+
+.meet-nick-childhood-copy {
+  max-width: 760px;
+}
+
+.meet-nick-childhood-copy h3 {
+  margin-bottom: 1.25rem;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+}
+
+.meet-nick-childhood-copy p {
+  margin-bottom: 1.25rem;
+  color: #555;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.8;
+}
+/* Soft Meet Nick page entrance */
+.meet-nick-page-enter {
+  animation: meetNickPageIn .65s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes meetNickPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meet-nick-page-enter {
+    animation: none;
+  }
+}
+.meet-nick-closing {
+  background: #f8f6f2;
+  text-align: center;
+}
+
+.meet-nick-closing-content {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.meet-nick-closing-content h2 {
+  margin-bottom: 1.5rem;
+}
+
+.meet-nick-closing-content p:not(.eyebrow) {
+  margin: 0 auto 2.5rem;
+  max-width: 640px;
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
