@@ -172,23 +172,15 @@ export default function BookingModal({
   href={emailLink}
   onClick={(event) => handleContactClick(event, emailLink)}
 >
-            <span className="booking-card-icon" aria-hidden="true">
-              ✉️
-            </span>
+         <span className="booking-card-icon" aria-hidden="true">
+  ✉️
+</span>
 
-            <h3>Email Us</h3>
+<h3>Email Us</h3>
 
-            <p className="booking-contact-detail">
-              nicksdoggydaycare@gmail.com
-            </p>
-
-            <p>
-              We'll respond personally and help you find the best option for your dog.
-            </p>
-
-            <span className="booking-card-action">
-              Open Email <span>→</span>
-            </span>
+<p className="booking-contact-detail">
+  nicksdoggydaycare@gmail.com
+</p>
           </a>
 
           <a
@@ -197,22 +189,14 @@ export default function BookingModal({
   onClick={(event) => handleContactClick(event, textLink)}
 >
             <span className="booking-card-icon" aria-hidden="true">
-              💬
-            </span>
+  💬
+</span>
 
-            <h3>Text Us</h3>
+<h3>Text Us</h3>
 
-            <p className="booking-contact-detail">
-              (904) 728-6552
-            </p>
-
-            <p>
-              Perfect for quick questions or checking availability.
-            </p>
-
-            <span className="booking-card-action">
-            Open Messages <span>→</span>
-            </span>
+<p className="booking-contact-detail">
+  (904) 728-6552
+</p>
           </a>
         </div>
       </div>
