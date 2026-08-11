@@ -8,6 +8,36 @@ export default function MeetNick() {
     const [bookingOpen, setBookingOpen] = useState(false)
       const heroRef = useRef(null)
 
+      useEffect(() => {
+  const previousTitle = document.title
+  const previousDescription = document
+    .querySelector('meta[name="description"]')
+    ?.getAttribute('content')
+
+  document.title = "Meet Nick | Nick's Doggy Daycare"
+
+  const description =
+    document.querySelector('meta[name="description"]')
+
+  if (description) {
+    description.setAttribute(
+      'content',
+      "Meet Nick, the person behind Nick's Doggy Daycare, and learn about his 16+ years of experience caring for dogs of all sizes, personalities, and energy levels."
+    )
+  }
+
+  return () => {
+    document.title = previousTitle
+
+    if (description && previousDescription) {
+      description.setAttribute(
+        'content',
+        previousDescription
+      )
+    }
+  }
+}, [])
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
