@@ -103,8 +103,8 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
 
 .hero {
   position: relative;
-  height: 100svh;
-  min-height: 720px;
+  height: 88svh;
+  min-height: 640px;
   color: var(--white);
   overflow: hidden;
   display: grid;
@@ -113,9 +113,13 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
 .hero-media, .hero-fallback, .hero-overlay {
   position: absolute;
   inset: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
 }
-.hero-media { object-fit: cover; z-index: 0; }
+.hero-media {
+  object-fit: cover;
+  z-index: 0;
+}
 .hero-fallback {
   z-index: -1;
   background:
@@ -124,40 +128,36 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
     #355746;
 }
 .hero-overlay {
-  background: linear-gradient(to bottom, rgba(9,18,14,.25), rgba(9,18,14,.22) 48%, rgba(9,18,14,.55));
   z-index: 1;
+  background:
+    linear-gradient(to bottom, rgba(9,18,14,.22), rgba(9,18,14,.18) 48%, rgba(9,18,14,.46));
 }
 .hero-content {
   position: relative;
   z-index: 2;
-  width: min(1240px, 92vw);
+  width: min(960px, 88vw);
+  padding-top: 3.5rem;
   text-align: center;
-  padding-top: 4rem;
 }
-.hero-content h1 { max-width: 1180px; margin: 1rem auto 1.3rem; }
-.hero-copy { max-width: 720px; margin: 0 auto 2rem; font-size: clamp(1rem, 1.7vw, 1.25rem); }
-.hero-actions { display: flex; justify-content: center; gap: .8rem; flex-wrap: wrap; }
-.eyebrow {
-  margin-bottom: .8rem;
-  font-size: .72rem;
-  text-transform: uppercase;
-  letter-spacing: .23em;
-  font-weight: 600;
+.hero-content h1 {
+  max-width: 900px;
+  margin: 0 auto 1.35rem;
+  font-size: clamp(4rem, 7vw, 7.2rem);
+  line-height: .94;
+  text-wrap: balance;
 }
-.eyebrow.dark { color: var(--forest); }
-.scroll-cue {
-  position: absolute;
-  z-index: 3;
-  bottom: 2rem;
-  display: grid;
-  justify-items: center;
-  gap: .65rem;
-  font-size: .68rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
+.hero-copy {
+  max-width: 680px;
+  margin: 0 auto 1.8rem;
+  color: rgba(255,255,255,.92);
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  line-height: 1.55;
+  text-wrap: balance;
 }
-.scroll-line { display: block; width: 1px; height: 38px; background: rgba(255,255,255,.65); animation: pulse 1.8s infinite; }
-@keyframes pulse { 0%,100% { opacity: .25; transform: scaleY(.75); } 50% { opacity: 1; transform: scaleY(1); } }
+.hero-actions {
+  display: flex;
+  justify-content: center;
+}
 
 .forecast-section { padding: 0 4vw; margin-top: -2.2rem; position: relative; z-index: 5; }
 .forecast-card {
@@ -374,11 +374,26 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
 
 @media (max-width: 640px) {
   .site-header { height: 74px; padding: 0 1.2rem; }
-  .hero { min-height: 680px; }
-  .hero-content { text-align: left; padding: 6rem 1.2rem 2rem; width: 100%; }
-  .hero-actions { justify-content: flex-start; }
-  .hero-copy { margin-left: 0; }
-  .scroll-cue { right: 1.2rem; left: auto; }
+  .hero {
+    height: 82svh;
+    min-height: 600px;
+  }
+  .hero-content {
+    width: 100%;
+    padding: 5.5rem 1.4rem 2rem;
+    text-align: left;
+  }
+  .hero-content h1 {
+    margin-left: 0;
+    font-size: clamp(3.3rem, 15vw, 5rem);
+  }
+  .hero-actions {
+    justify-content: flex-start;
+  }
+  .hero-copy {
+    max-width: 520px;
+    margin-left: 0;
+  }
   .forecast-section { padding: 0 1rem; }
   .forecast-card { border-radius: 16px; }
   .forecast-main { flex-wrap: wrap; }
@@ -802,4 +817,1390 @@ h3 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
 
 .hero-nick-link:hover span {
   transform: translateX(2px);
+}
+
+
+/* =========================================================
+   Compact homepage — clean consolidated styles
+   ========================================================= */
+
+.compact-section,
+.services-compact {
+  padding: clamp(4.5rem, 7vw, 7rem) 5vw;
+}
+
+.compact-heading {
+  width: min(1180px, 100%);
+  margin: 0 auto 2.5rem;
+}
+
+.compact-heading .eyebrow { margin-bottom: .65rem; }
+
+.compact-heading h2 {
+  max-width: 780px;
+  margin-bottom: 0;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: .98;
+}
+
+/* Meadow */
+.meadow-compact {
+  padding: clamp(2.5rem, 4vw, 4rem) 4vw 0;
+}
+
+.meadow-compact-card {
+  width: min(1320px, 100%);
+  min-height: min(62svh, 620px);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 26px;
+  color: white;
+  background:
+    linear-gradient(to top, rgba(12,28,20,.76), rgba(12,28,20,.04) 68%),
+    url("/assets/images/property.jpg") center/cover no-repeat,
+    #607c65;
+}
+
+.meadow-compact-copy {
+  max-width: 690px;
+  padding: clamp(2rem, 5vw, 4.5rem);
+}
+
+.meadow-compact-copy h2 {
+  margin-bottom: 1rem;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+}
+
+.meadow-compact-copy p:last-child {
+  max-width: 540px;
+  margin-bottom: 0;
+  color: rgba(255,255,255,.9);
+}
+
+/* Services */
+.services-compact { padding-left: 4vw; padding-right: 4vw; }
+
+.service-cards {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.service-card {
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 22px;
+  color: white;
+  background-position: center;
+  background-size: cover;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(9,22,16,.82), rgba(9,22,16,.05) 72%);
+}
+
+.service-card > div { position: relative; z-index: 1; }
+
+.service-card h3 {
+  margin: .45rem 0 1rem;
+  font-size: clamp(2.1rem, 3.2vw, 3.4rem);
+}
+
+.service-daycare { background-image: url("/assets/images/gallery/meadow-rest.jpg"); }
+.service-boarding { background-image: url("/assets/images/boarding.jpg"); }
+.service-visits { }
+
+.booking-text-link {
+  appearance: none;
+  padding: 0 0 .35rem;
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,.5);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Pricing */
+.pricing-section { background: #f2eee7; }
+
+.pricing-grid-compact {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.pricing-grid-compact .pricing-card {
+  min-height: 245px;
+  border-radius: 20px;
+}
+
+.pricing-grid-compact .pricing-card h3 {
+  margin: 2.2rem 0 .75rem;
+}
+
+.pricing-grid-compact .pricing-card > p:last-child { margin-bottom: 0; }
+
+.pricing-note {
+  max-width: 800px;
+  margin: 1rem auto 0;
+}
+
+/* Optional details — concise by default */
+.details-hub { background: #faf8f4; }
+
+.detail-accordion {
+  width: min(1000px, 100%);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(35,64,51,.12);
+  border-radius: 18px;
+  background: white;
+}
+
+.detail-accordion details {
+  padding: 0 1.35rem;
+  border-bottom: 1px solid rgba(35,64,51,.11);
+}
+
+.detail-accordion details:last-child { border-bottom: 0; }
+
+.detail-accordion summary {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  cursor: pointer;
+  color: var(--forest);
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  font-weight: 400;
+}
+
+.detail-accordion summary::-webkit-details-marker { display: none; }
+
+.detail-accordion summary svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  transition: transform .25s ease;
+}
+
+.detail-accordion details[open] summary svg { transform: rotate(180deg); }
+
+.detail-body {
+  padding: .15rem 0 1.5rem;
+  color: #5d625e;
+}
+
+.detail-body p { margin: .3rem 0 0; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem;
+}
+
+.detail-grid > div,
+.day-detail > div {
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--ivory);
+}
+
+.detail-grid strong,
+.day-detail strong { color: var(--forest); }
+
+.day-detail {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .65rem;
+}
+
+.day-detail span {
+  display: block;
+  margin-bottom: .55rem;
+  color: var(--gold);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.detail-story {
+  display: grid;
+  grid-template-columns: minmax(240px,.85fr) 1.15fr;
+  gap: 1.4rem;
+  align-items: center;
+}
+
+.detail-story img,
+.detail-story video {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.detail-story h3 {
+  margin-bottom: .6rem;
+  color: var(--forest);
+}
+
+/* Gallery — four clean previews, no overlay bands */
+.gallery-compact { background: #efece6; }
+
+.gallery-dropdown-grid {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .8rem;
+}
+
+.gallery-dropdown-grid .gallery-photo {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #d9d5cd;
+}
+
+.gallery-dropdown-grid .gallery-photo::after {
+  content: none !important;
+  display: none !important;
+}
+
+.gallery-dropdown-grid .gallery-photo span {
+  display: none !important;
+}
+
+.gallery-dropdown-grid .gallery-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-extra { display: none !important; }
+.gallery-dropdown-grid.expanded .gallery-extra { display: block !important; }
+
+.gallery-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.gallery-toggle {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: 0 1.35rem;
+  border: 1px solid rgba(35,64,51,.28);
+  border-radius: 999px;
+  background: white;
+  color: var(--forest);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.gallery-toggle svg {
+  width: 18px;
+  height: 18px;
+  transition: transform .25s ease;
+}
+
+.gallery-toggle svg.rotated { transform: rotate(180deg); }
+
+/* Meet Nick remains a visible homepage section */
+.meet-nick-teaser {
+  background: var(--ivory);
+}
+
+.meet-nick-teaser-grid {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid rgba(35,64,51,.11);
+  border-radius: 22px;
+  background: white;
+}
+
+.meet-nick-teaser-copy {
+  max-width: 760px;
+}
+
+.meet-nick-teaser-copy h2 {
+  margin-bottom: 1rem;
+  font-size: clamp(3rem, 5.5vw, 5.4rem);
+}
+
+.meet-nick-teaser-copy > p:not(.eyebrow) {
+  max-width: 620px;
+  margin-bottom: 1.5rem;
+  color: #626262;
+  line-height: 1.7;
+}
+
+/* FAQ */
+.faq-section { background: white; }
+
+.faq-list-compact {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.faq-list-compact details { padding: 1.1rem 0; }
+
+.faq-list-compact summary {
+  color: var(--forest);
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+}
+
+/* Final CTA */
+.final-cta-compact {
+  min-height: 54svh;
+}
+
+.final-cta-compact .final-content {
+  width: min(720px, 88vw);
+}
+
+.final-cta-compact .final-content h2 {
+  margin-bottom: 1.2rem;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+/* Footer — intentionally dark so its existing light text has contrast */
+.footer.footer-compact {
+  min-height: 0;
+  padding: 2.5rem 5vw;
+  grid-template-columns: 1.2fr 1fr auto;
+  gap: 2rem;
+  align-items: end;
+  background: var(--forest-deep);
+  color: rgba(255,255,255,.72);
+}
+
+.footer.footer-compact p { margin-bottom: .25rem; }
+
+.footer.footer-compact .footer-brand {
+  margin-bottom: .2rem;
+  color: white;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .service-cards { grid-template-columns: 1fr; }
+  .service-card { min-height: 340px; }
+
+  .gallery-dropdown-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-dropdown-grid .gallery-photo { height: 300px; }
+
+  .day-detail { grid-template-columns: repeat(2, 1fr); }
+
+  .footer.footer-compact { grid-template-columns: 1fr; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .hero {
+    height: 74svh;
+    min-height: 540px;
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 5rem 1.25rem 1.75rem;
+    text-align: left;
+  }
+
+  .hero-content h1 {
+    max-width: 335px;
+    margin-left: 0;
+    margin-bottom: 1rem;
+    font-size: clamp(3rem, 14vw, 4.35rem);
+  }
+
+  .hero-copy {
+    max-width: 340px;
+    margin-left: 0;
+    margin-bottom: 1.3rem;
+    font-size: .93rem;
+  }
+
+  .hero-actions { justify-content: flex-start; }
+
+  .compact-section,
+  .services-compact {
+    padding: 3.35rem 1rem;
+  }
+
+  .compact-heading { margin-bottom: 1.45rem; }
+
+  .compact-heading h2 {
+    font-size: clamp(2.45rem, 11vw, 3.55rem);
+  }
+
+  .meadow-compact { padding: .8rem .8rem 0; }
+
+  .meadow-compact-card {
+    min-height: 410px;
+    border-radius: 18px;
+  }
+
+  .meadow-compact-copy { padding: 1.35rem; }
+
+  .meadow-compact-copy h2 {
+    font-size: clamp(2.6rem, 11vw, 3.8rem);
+  }
+
+  .services-compact {
+    padding-left: .8rem;
+    padding-right: .8rem;
+  }
+
+  .service-cards { gap: .65rem; }
+
+  .service-card {
+    min-height: 265px;
+    padding: 1.3rem;
+    border-radius: 17px;
+  }
+
+  .pricing-grid-compact { gap: .7rem; }
+
+  .pricing-grid-compact .pricing-card {
+    min-height: 180px;
+    padding: 1.35rem;
+  }
+
+  .pricing-grid-compact .pricing-card h3 {
+    margin: 1.5rem 0 .6rem;
+    font-size: 2.5rem;
+  }
+
+  .details-hub {
+    padding-left: .8rem;
+    padding-right: .8rem;
+  }
+
+  .detail-accordion {
+    border-radius: 14px;
+  }
+
+  .detail-accordion details {
+    padding: 0 1rem;
+  }
+
+  .detail-accordion summary {
+    min-height: 58px;
+    font-size: 1.28rem;
+  }
+
+  .detail-grid,
+  .day-detail,
+  .detail-story {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid,
+  .day-detail { gap: .5rem; }
+
+  .detail-story img,
+  .detail-story video { height: 210px; }
+
+  .gallery-compact {
+    padding-left: .8rem;
+    padding-right: .8rem;
+  }
+
+  .gallery-dropdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: .5rem;
+  }
+
+  .gallery-dropdown-grid .gallery-photo {
+    height: 205px;
+    border-radius: 13px;
+  }
+
+  .meet-nick-teaser {
+    padding-left: .8rem;
+    padding-right: .8rem;
+  }
+
+  .meet-nick-teaser-grid {
+    padding: 1.45rem;
+    border-radius: 16px;
+  }
+
+  .meet-nick-teaser-copy h2 {
+    font-size: clamp(2.6rem, 11vw, 3.7rem);
+  }
+
+  .meet-nick-teaser-copy > p:not(.eyebrow) {
+    line-height: 1.55;
+  }
+
+  .faq-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .final-cta-compact {
+    min-height: 46svh;
+  }
+
+  .footer.footer-compact {
+    padding: 2rem 1.25rem;
+    gap: 1.2rem;
+    font-size: .8rem;
+  }
+
+  .footer.footer-compact .footer-brand {
+    font-size: 1.65rem;
+  }
+}
+
+
+/* Mixed-media expandable gallery */
+.gallery-dropdown-grid .gallery-photo video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   Subject-safe image framing
+   Keep dogs in view as cards and screens change shape.
+   ========================================================= */
+
+/* Service cards: choose dog-centered focal points instead of generic center crop. */
+.service-daycare {
+  background-position: 50% 48%;
+}
+
+.service-boarding {
+  background-position: 50% 42%;
+}
+
+.service-visits {
+  background-position: 50% 48%;
+}
+
+/* Gallery media: keep the subject centered and bias slightly upward so
+   heads are less likely to be clipped by short/wide containers. */
+.gallery-dropdown-grid .gallery-photo img,
+.gallery-dropdown-grid .gallery-photo video {
+  object-position: 50% 42%;
+}
+
+/* Individual gallery focal points where the dog is not centered in the source. */
+.gallery-dropdown-grid .gallery-photo:nth-child(1) video {
+  object-position: 50% 50%;
+}
+
+.gallery-dropdown-grid .gallery-photo:nth-child(2) img {
+  object-position: 50% 44%;
+}
+
+.gallery-dropdown-grid .gallery-photo:nth-child(3) img {
+  object-position: 50% 46%;
+}
+
+.gallery-dropdown-grid .gallery-photo:nth-child(4) img {
+  object-position: 50% 42%;
+}
+
+/* Meadow/detail media should favor the dog rather than the geometric center. */
+.meadow-compact-card {
+  background-position: 50% 50%;
+}
+
+.detail-story img,
+.detail-story video {
+  object-position: 50% 42%;
+}
+
+/* On narrow screens the cards get taller/narrower, so reduce aggressive crop
+   and keep the focal area around the dogs. */
+@media (max-width: 640px) {
+  .service-daycare {
+    background-position: 50% 46%;
+  }
+
+  .service-boarding {
+    background-position: 50% 40%;
+  }
+
+  .service-visits {
+    background-position: 50% 45%;
+  }
+
+  .gallery-dropdown-grid .gallery-photo img,
+  .gallery-dropdown-grid .gallery-photo video {
+    object-position: 50% 42%;
+  }
+}
+
+
+/* =========================================================
+   Gallery geometry + responsive hero alignment
+   ========================================================= */
+
+/* Keep the gallery as a true two-column square grid on desktop too.
+   This prevents wide screens from stretching each photo into a banner. */
+.gallery-dropdown-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.gallery-dropdown-grid .gallery-photo {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: hidden;
+}
+
+.gallery-dropdown-grid .gallery-photo img,
+.gallery-dropdown-grid .gallery-photo video {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover !important;
+}
+
+/* Center the hero copy whenever the layout enters its narrower/tablet form. */
+@media (max-width: 900px) {
+  .hero-content,
+  .hero-copy {
+    text-align: center !important;
+    align-items: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-content p,
+  .hero-copy p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-actions,
+  .hero-buttons {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
+/* Preserve two square columns on normal phones as requested. */
+@media (max-width: 640px) {
+  .gallery-dropdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+}
+
+
+/* =========================================================
+   Hero mobile/tablet layout correction
+   ========================================================= */
+@media (max-width: 900px) {
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content,
+  .hero-copy {
+    width: min(100%, 680px) !important;
+    max-width: 680px !important;
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  .hero-content h1,
+  .hero-copy h1 {
+    width: 100% !important;
+    max-width: 620px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    text-wrap: balance;
+  }
+
+  .hero-content p,
+  .hero-copy p {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    text-wrap: balance;
+  }
+
+  .hero-actions,
+  .hero-buttons {
+    width: 100%;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-content,
+  .hero-copy {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+
+  .hero-content h1,
+  .hero-copy h1 {
+    max-width: 500px !important;
+    font-size: clamp(3rem, 13vw, 4.4rem) !important;
+    line-height: .91 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .hero-content p,
+  .hero-copy p {
+    max-width: 390px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-content h1,
+  .hero-copy h1 {
+    font-size: clamp(2.75rem, 14vw, 3.7rem) !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL GALLERY LAYOUT
+   Always two equal square columns at every viewport width.
+   ========================================================= */
+.gallery-grid,
+.gallery-dropdown-grid,
+.gallery-grid.gallery-dropdown-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-auto-flow: row !important;
+  width: 100% !important;
+  gap: 16px !important;
+}
+
+.gallery-grid > *,
+.gallery-dropdown-grid > *,
+.gallery-grid.gallery-dropdown-grid > * {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+}
+
+.gallery-photo {
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.gallery-photo img,
+.gallery-photo video {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+}
+
+@media (max-width: 640px) {
+  .gallery-grid,
+  .gallery-dropdown-grid,
+  .gallery-grid.gallery-dropdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+}
+
+
+/* =========================================================
+   Bottom-of-hero Explore cue
+   ========================================================= */
+.hero {
+  position: relative;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  z-index: 6;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+.hero-scroll-arrow {
+  font-size: 1.35rem;
+  line-height: 1;
+  animation: hero-scroll-bob 1.7s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 640px) {
+  .hero-scroll-cue {
+    bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-scroll-arrow { animation: none; }
+}
+
+
+/* Daycare card — user-approved framing */
+.service-daycare {
+  background-position: 50% 85% !important;
+}
+
+@media (max-width: 640px) {
+  .service-daycare {
+    background-position: 50% 85% !important;
+  }
+}
+
+/* Split mobile hero: brand high, booking action low */
+@media (max-width: 900px) {
+  .hero-content {
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    padding: 0 24px !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .hero-brand-message {
+    position: absolute;
+    top: clamp(112px, 16svh, 150px);
+    left: 22px;
+    right: 22px;
+    text-align: center;
+  }
+
+  .hero-brand-message h1 {
+    margin: 0 auto !important;
+    max-width: 520px !important;
+    text-align: center !important;
+  }
+
+  .hero-brand-message .hero-tagline {
+    margin: 9px auto 0 !important;
+  }
+
+  .hero-booking-message {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-booking-message .hero-description {
+    margin: 0 auto 14px !important;
+    max-width: 390px !important;
+  }
+
+  .hero-booking-message .hero-actions {
+    margin: 0 !important;
+    justify-content: center !important;
+  }
+
+  .hero-scroll-cue { bottom: 14px !important; }
+}
+
+@media (max-width: 640px) {
+  .hero-brand-message {
+    top: clamp(100px, 14svh, 125px);
+    left: 20px;
+    right: 20px;
+  }
+
+  .hero-brand-message h1 {
+    max-width: 360px !important;
+    font-size: clamp(2.5rem, 11vw, 3.5rem) !important;
+    line-height: .94 !important;
+  }
+
+  .hero-booking-message {
+    bottom: 86px;
+  }
+
+  .hero-booking-message .hero-description {
+    max-width: 335px !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .hero-brand-message,
+  .hero-booking-message {
+    display: contents;
+  }
+}
+
+
+/* =========================================================
+   Service card subject framing
+   Daycare is already correct; reframe Boarding + At-Home Visits.
+   ========================================================= */
+
+/* Show more of the boarding dog's head/body instead of cropping into the fur. */
+.service-boarding {
+  background-position: 50% 72% !important;
+}
+
+/* Pull the at-home photo down in the frame so the dog's full face/body is visible. */
+.service-visits {
+  background-position: 50% 68% !important;
+}
+
+@media (max-width: 640px) {
+  .service-boarding {
+    background-position: 50% 72% !important;
+  }
+
+  .service-visits {
+    background-position: 50% 68% !important;
+  }
+}
+
+
+/* Header brand: hidden while hero is at the top, visible once header enters scrolled state */
+.brand-hero-hidden {
+  opacity: 0 !important;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.brand-visible {
+  opacity: 1 !important;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.site-header .brand {
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+
+/* Meadow card photo */
+.meadow-compact-card { background-image: url("/assets/images/meadow-running.jpg") !important; }
+
+
+/* =========================================================
+   At-Home Visits — authoritative image source
+   ========================================================= */
+.service-visits {
+  background-image: url("/assets/images/at-home-visits-new.jpg") !important;
+  background-position: 50% 68% !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+
+/* =========================================================
+   The Meadow — improve text contrast over grass
+   ========================================================= */
+.meadow-compact-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.meadow-compact-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 25, 16, 0.66) 0%,
+      rgba(10, 25, 16, 0.48) 42%,
+      rgba(10, 25, 16, 0.14) 72%,
+      rgba(10, 25, 16, 0.04) 100%
+    );
+  pointer-events: none;
+}
+
+.meadow-compact-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.meadow-compact-card h2,
+.meadow-compact-card p,
+.meadow-compact-card .eyebrow {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+}
+
+@media (max-width: 640px) {
+  .meadow-compact-card::after {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 25, 16, 0.70) 0%,
+        rgba(10, 25, 16, 0.50) 65%,
+        rgba(10, 25, 16, 0.20) 100%
+      );
+  }
+}
+
+
+/* =========================================================
+   Meadow card — protect the dog from the text contrast fade
+   ========================================================= */
+.meadow-compact-card {
+  background-position: 18% 50% !important;
+}
+
+.meadow-compact-card::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 25, 16, 0.68) 0%,
+      rgba(10, 25, 16, 0.58) 28%,
+      rgba(10, 25, 16, 0.30) 43%,
+      rgba(10, 25, 16, 0.08) 54%,
+      rgba(10, 25, 16, 0.00) 63%
+    ) !important;
+}
+
+@media (max-width: 640px) {
+  .meadow-compact-card {
+    background-position: 36% 42% !important;
+  }
+
+  .meadow-compact-card::after {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 25, 16, 0.70) 0%,
+        rgba(10, 25, 16, 0.56) 32%,
+        rgba(10, 25, 16, 0.24) 47%,
+        rgba(10, 25, 16, 0.05) 58%,
+        rgba(10, 25, 16, 0.00) 66%
+      ) !important;
+  }
+}
+
+
+/* =========================================================
+   Meadow copy — keep all wording on the left side
+   ========================================================= */
+.meadow-compact-card h2 {
+  max-width: 560px !important;
+  text-wrap: balance;
+}
+
+.meadow-compact-card p {
+  max-width: 520px !important;
+  margin-right: auto !important;
+  text-wrap: balance;
+}
+
+/* Force the intended desktop headline break:
+   More grass.
+   More freedom. */
+@media (min-width: 641px) {
+  .meadow-compact-card h2 {
+    max-width: 520px !important;
+  }
+
+  .meadow-compact-card p {
+    max-width: 470px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .meadow-compact-card h2 {
+    max-width: 310px !important;
+  }
+
+  .meadow-compact-card p {
+    max-width: 300px !important;
+  }
+}
+
+
+/* =========================================================
+   Meadow dropdown video — show slightly more of the lower frame
+   ========================================================= */
+.detail-story video {
+  object-position: 50% 50% !important;
+}
+
+@media (max-width: 640px) {
+  .detail-story video {
+    object-position: 50% 50% !important;
+  }
+}
+
+
+/* Meadow dropdown video card — slightly taller */
+.detail-story video {
+  height: 310px !important;
+}
+
+@media (max-width: 640px) {
+  .detail-story video {
+    height: 250px !important;
+  }
+}
+
+
+/* =========================================================
+   Footer legal / Privacy Policy
+   ========================================================= */
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .35rem;
+}
+
+.footer-privacy-link {
+  color: rgba(255,255,255,.88);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.35);
+  text-underline-offset: 4px;
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+
+.footer-privacy-link:hover {
+  color: #fff;
+  text-decoration-color: rgba(255,255,255,.8);
+}
+
+@media (max-width: 980px) {
+  .footer-legal {
+    align-items: flex-start;
+  }
+}
+
+
+/* =========================================================
+   Service labels — tight soft blur directly around the words
+   ========================================================= */
+.service-card .eyebrow {
+  position: relative;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: .65rem;
+  padding: .12rem .28rem;
+  color: #fff;
+}
+
+.service-card .eyebrow::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -.08rem -.14rem;
+  border-radius: 10px;
+  background: rgba(12, 24, 17, .22);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  filter: blur(2.5px);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 42%, transparent 94%);
+  mask-image: radial-gradient(ellipse at center, #000 42%, transparent 94%);
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   The Meadow — subtle live weather
+   ========================================================= */
+.meadow-compact-card {
+  position: relative;
+}
+
+.meadow-weather {
+  position: absolute !important;
+  z-index: 2 !important;
+  right: clamp(1.25rem, 3vw, 2.5rem);
+  bottom: clamp(1.25rem, 3vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  max-width: 330px;
+  padding: .7rem .9rem;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  background: rgba(16,31,24,.24);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.10);
+  color: #fff;
+}
+
+.meadow-weather-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.meadow-weather-temp {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.meadow-weather-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255,255,255,.25);
+}
+
+.meadow-weather-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.meadow-weather-copy strong {
+  font-size: .76rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.meadow-weather-copy small {
+  margin-top: .22rem;
+  color: rgba(255,255,255,.72);
+  font-size: .62rem;
+  letter-spacing: .03em;
+}
+
+@media (max-width: 760px) {
+  .meadow-weather {
+    left: 1.35rem;
+    right: auto;
+    bottom: 1.25rem;
+    max-width: calc(100% - 2.7rem);
+    padding: .62rem .78rem;
+  }
+
+  .meadow-weather-copy strong {
+    white-space: normal;
+  }
+
+  .meadow-compact-copy {
+    padding-bottom: 6.3rem;
+  }
+}
+
+
+/* =========================================================
+   Meadow weather — centered and slightly overlapping card edge
+   ========================================================= */
+.meadow-weather {
+  left: 50% !important;
+  right: auto !important;
+  bottom: -24px !important;
+  transform: translateX(-50%) !important;
+}
+
+@media (max-width: 760px) {
+  .meadow-weather {
+    left: 50% !important;
+    right: auto !important;
+    bottom: -24px !important;
+    transform: translateX(-50%) !important;
+    width: max-content;
+    max-width: calc(100% - 2rem);
+  }
+
+  .meadow-compact-copy {
+    padding-bottom: clamp(2rem, 5vw, 4.5rem);
+  }
+}
+
+
+/* =========================================================
+   Meadow weather — allow overlap outside card + lower position
+   ========================================================= */
+.meadow-compact-card {
+  overflow: visible !important;
+}
+
+.meadow-weather {
+  bottom: -32px !important;
+}
+
+@media (max-width: 760px) {
+  .meadow-weather {
+    bottom: -32px !important;
+  }
+}
+
+/* Preserve the Meadow image/card clipping while allowing the weather pill
+   to extend below the card. */
+.meadow-compact-card::after {
+  border-radius: 26px;
+}
+
+@media (max-width: 640px) {
+  .meadow-compact-card::after {
+    border-radius: 18px;
+  }
 }

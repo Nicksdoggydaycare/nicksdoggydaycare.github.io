@@ -75,11 +75,16 @@ Thank you!`,
   },
 }
 
+const APP_SCHEME = 'nicksdoggydaycareapp://'
+
 export default function BookingModal({
   bookingType = 'general',
   onClose,
 }) {
   const [isLeaving, setIsLeaving] = useState(false)
+  const [step, setStep] = useState('customer-type')
+  const [appLaunchAttempted, setAppLaunchAttempted] = useState(false)
+
   const content =
     bookingContent[bookingType] || bookingContent.general
 
@@ -115,7 +120,7 @@ export default function BookingModal({
     }
   }
 
-    const handleContactClick = (event, destination) => {
+  const handleContactClick = (event, destination) => {
     event.preventDefault()
     setIsLeaving(true)
 
@@ -124,6 +129,148 @@ export default function BookingModal({
       onClose()
     }, 180)
   }
+
+  const handleOpenApp = () => {
+    setAppLaunchAttempted(true)
+    window.location.href = APP_SCHEME
+  }
+
+  const goBack = () => {
+    setAppLaunchAttempted(false)
+    setStep('customer-type')
+  }
+
+  const renderCustomerTypeStep = () => (
+    <>
+      <h2 id="booking-modal-title">{content.title}</h2>
+
+      <p className="booking-welcome">
+        {content.welcome}
+      </p>
+
+      <p className="booking-intro">
+        Have you booked with us before?
+      </p>
+
+      <div className="booking-options booking-customer-options">
+        <button
+          type="button"
+          className="booking-card booking-card-button"
+          onClick={() => setStep('new-customer')}
+        >
+          <span className="booking-card-icon" aria-hidden="true">🐾</span>
+          <h3>I'm New Here</h3>
+          <p className="booking-contact-detail">
+            Start your first booking with Nick.
+          </p>
+        </button>
+
+        <button
+          type="button"
+          className="booking-card booking-card-button"
+          onClick={() => setStep('existing-customer')}
+        >
+          <span className="booking-card-icon" aria-hidden="true">📱</span>
+          <h3>I've Booked Before</h3>
+          <p className="booking-contact-detail">
+            Open the app to manage your care.
+          </p>
+        </button>
+      </div>
+    </>
+  )
+
+  const renderNewCustomerStep = () => (
+    <>
+      <button
+        type="button"
+        className="booking-back"
+        onClick={goBack}
+      >
+        <span aria-hidden="true">←</span> Back
+      </button>
+
+      <h2 id="booking-modal-title">Let's Get You Started</h2>
+
+      <p className="booking-welcome">
+        Choose whichever way is easiest to get in touch.
+      </p>
+
+      <p className="booking-intro">
+        We'll follow up personally to confirm availability and learn a little more about your dog.
+      </p>
+
+      <div className="booking-options">
+        <a
+          className="booking-card"
+          href={emailLink}
+          onClick={(event) => handleContactClick(event, emailLink)}
+        >
+          <span className="booking-card-icon" aria-hidden="true">✉️</span>
+          <h3>Email Us</h3>
+          <p className="booking-contact-detail">
+            nicksdoggydaycare@gmail.com
+          </p>
+        </a>
+
+        <a
+          className="booking-card"
+          href={textLink}
+          onClick={(event) => handleContactClick(event, textLink)}
+        >
+          <span className="booking-card-icon" aria-hidden="true">💬</span>
+          <h3>Text Us</h3>
+          <p className="booking-contact-detail">
+            (904) 728-6552
+          </p>
+        </a>
+      </div>
+    </>
+  )
+
+  const renderExistingCustomerStep = () => (
+    <>
+      <button
+        type="button"
+        className="booking-back"
+        onClick={goBack}
+      >
+        <span aria-hidden="true">←</span> Back
+      </button>
+
+      <h2 id="booking-modal-title">Welcome Back</h2>
+
+      <p className="booking-welcome">
+        Existing customers can book and manage care in the Nick's Doggy Daycare app.
+      </p>
+
+      <div className="booking-app-panel">
+        <div className="booking-app-icon" aria-hidden="true">🐾</div>
+        <div className="booking-app-copy">
+          <h3>Nick's Doggy Daycare</h3>
+          <p>Bookings, dog profiles, updates, payments, and more—all in one place.</p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="booking-open-app-button"
+        onClick={handleOpenApp}
+      >
+        Open the App
+      </button>
+
+      {appLaunchAttempted && (
+        <p className="booking-app-fallback" role="status">
+          If the app didn't open, it may not be installed on this device. The App Store download link will be added here as soon as the public listing is available.
+        </p>
+      )}
+
+      <p className="booking-app-note">
+        New to Nick's Doggy Daycare? Go back and choose “I'm New Here” to get started.
+      </p>
+    </>
+  )
 
   return createPortal(
     <div
@@ -146,59 +293,13 @@ export default function BookingModal({
         </button>
 
         <div className="booking-brand">
-        <span className="booking-brand-main">The Meadow</span>
-        <span className="booking-brand-sub">by Nick's Doggy Daycare</span>
+          <span className="booking-brand-main">The Meadow</span>
+          <span className="booking-brand-sub">by Nick's Doggy Daycare</span>
         </div>
 
-        <h2 id="booking-modal-title">
-          {content.title}
-        </h2>
-
-        <p className="booking-welcome">
-          {content.welcome}
-        </p>
-
-        <p className="booking-intro">
-          Choose whichever way is easiest to get in touch.
-        </p>
-
-        <p className="booking-reassurance">
-        
-        </p>
-
-        <div className="booking-options">
-          <a
-  className="booking-card"
-  href={emailLink}
-  onClick={(event) => handleContactClick(event, emailLink)}
->
-         <span className="booking-card-icon" aria-hidden="true">
-  ✉️
-</span>
-
-<h3>Email Us</h3>
-
-<p className="booking-contact-detail">
-  nicksdoggydaycare@gmail.com
-</p>
-          </a>
-
-          <a
-  className="booking-card"
-  href={textLink}
-  onClick={(event) => handleContactClick(event, textLink)}
->
-            <span className="booking-card-icon" aria-hidden="true">
-  💬
-</span>
-
-<h3>Text Us</h3>
-
-<p className="booking-contact-detail">
-  (904) 728-6552
-</p>
-          </a>
-        </div>
+        {step === 'customer-type' && renderCustomerTypeStep()}
+        {step === 'new-customer' && renderNewCustomerStep()}
+        {step === 'existing-customer' && renderExistingCustomerStep()}
       </div>
     </div>,
     document.body

@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import BookingModal from '../components/BookingModal'
 
 const Reveal = ({ children, className = '', delay = 0 }) => (
-  <motion.div className={className} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.14 }} transition={{ duration: .8, delay, ease: [0.22, 1, 0.36, 1] }}>
+  <motion.div
+    className={className}
+    initial={{ opacity: 0, y: 24 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.14 }}
+    transition={{ duration: .7, delay, ease: [0.22, 1, 0.36, 1] }}
+  >
     {children}
   </motion.div>
 )
@@ -13,154 +19,517 @@ const Reveal = ({ children, className = '', delay = 0 }) => (
 function Header({ onBooking }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40)
-    handler(); window.addEventListener('scroll', handler)
+    handler()
+    window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
-  return <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-    <a className="brand" href="#top"><span className="brand-main">Nick's</span><span className="brand-sub">Doggy Daycare</span></a>
-    <button className="menu-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation">{open ? <X /> : <Menu />}</button>
-    <nav className={`site-nav ${open ? 'open' : ''}`}>
-      {['The Meadow','Experiences','Gallery','Pricing','FAQ'].map((label) => <a key={label} href={`#${label.toLowerCase().replace('the ','').replace(' ','-')}`} onClick={() => setOpen(false)}>{label}</a>)}
-<button
-  className="button button-small button-light"
-  onClick={() => {
-    onBooking('general')
-    setOpen(false)
-  }}
->
-  Start Your Booking
-</button>    </nav>
-  </header>
+
+  return (
+    <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
+      <a className={`brand ${scrolled ? "brand-visible" : "brand-hero-hidden"}`} href="#top">
+        <span className="brand-main">Nick's</span>
+        <span className="brand-sub">Doggy Daycare</span>
+      </a>
+
+      <button
+        className="menu-toggle"
+        onClick={() => setOpen(!open)}
+        aria-label="Toggle navigation"
+      >
+        {open ? <X /> : <Menu />}
+      </button>
+
+      <nav className={`site-nav ${open ? 'open' : ''}`}>
+        <a href="#meadow" onClick={() => setOpen(false)}>The Meadow</a>
+        <a href="#experiences" onClick={() => setOpen(false)}>Services</a>
+        <a href="#pricing" onClick={() => setOpen(false)}>Pricing</a>
+        <a href="#gallery" onClick={() => setOpen(false)}>Gallery</a>
+        <a href="#faq" onClick={() => setOpen(false)}>FAQ</a>
+        <button
+          className="button button-small button-light"
+          onClick={() => {
+            onBooking('general')
+            setOpen(false)
+          }}
+        >
+          Start Your Booking
+        </button>
+      </nav>
+    </header>
+  )
 }
 
 function Hero({ onBooking }) {
   const { scrollYProgress } = useScroll()
-  const scale = useTransform(scrollYProgress, [0, .25], [1, 1.08])
-  return <section className="hero" id="top">
-    <motion.video className="hero-media" autoPlay muted loop playsInline poster="/assets/images/hero-poster.jpg" style={{ scale }}>
-      <source src="/assets/video/hero.mp4" type="video/mp4" />
-    </motion.video>
-    <div className="hero-fallback" /><div className="hero-overlay" />
-    <div className="hero-content">
-      <motion.p className="eyebrow" initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} transition={{delay:1.0,duration:.8}}>Home-style pet care in Jacksonville</motion.p>
-      <motion.h1 initial={{opacity:0,y:28}} animate={{opacity:1,y:0}} transition={{delay:1.5,duration:1}}>Every dog deserves room to run.<br/>Every owner deserves peace of mind.</motion.h1>
-      <motion.p className="hero-copy" initial={{opacity:0,y:22}} animate={{opacity:1,y:0}} transition={{delay:2.0,duration:.8}}>Daycare and overnight boarding on natural green space, with complimentary transportation.</motion.p>
-      <motion.div className="hero-actions" initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:2.5,duration:.8}}>
-        <button
-  className="button button-primary"
-  onClick={() => onBooking('general')}
->
-  Start Your Booking
-</button><a className="button button-ghost" href="#meadow">Meet The Meadow</a>
-      </motion.div>
-<Link className="hero-nick-link" to="/meet-nick">
-  Get to know Nick <span>→</span>
-</Link>    </div>
-    <a className="scroll-cue" href="#forecast"><span>Discover</span><span className="scroll-line" /></a>
-  </section>
+  const scale = useTransform(scrollYProgress, [0, .25], [1, 1.06])
+
+  return (
+    <section className="hero" id="top">
+      <motion.video
+        className="hero-media"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/assets/images/hero-poster.jpg"
+        style={{ scale }}
+      >
+        <source src="/assets/video/hero.mp4" type="video/mp4" />
+      </motion.video>
+
+      <div className="hero-fallback" />
+      <div className="hero-overlay" />
+
+      <div className="hero-content">
+        <div className="hero-brand-message">
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: .45, duration: .85 }}
+          >
+            Nick’s Doggy Daycare
+          </motion.h1>
+
+          <motion.p
+            className="hero-tagline"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: .68, duration: .7 }}
+          >
+            Happy pets. Peace of mind.
+          </motion.p>
+        </div>
+
+        <div className="hero-booking-message">
+          <motion.p
+            className="hero-copy hero-description"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: .82, duration: .7 }}
+          >
+            Daycare &amp; overnight boarding on over half an acre of natural grass, with complimentary pickup &amp; drop-off.
+          </motion.p>
+
+          <motion.div
+            className="hero-actions"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: .65 }}
+          >
+            <button className="button button-primary" onClick={() => onBooking('general')}>
+              Start Your Booking
+            </button>
+          </motion.div>
+        </div>
+      </div>
+
+      <a className="hero-scroll-cue" href="#meadow" aria-label="Explore the rest of the website">
+        <span>Explore</span>
+        <span className="hero-scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+    </section>
+  )
 }
 
-function Forecast() {
-  const [weather, setWeather] = useState({temp:'—',icon:'🌿',status:'A good day for thoughtful, supervised play.',note:'Jacksonville, Florida',activities:['Fetch','Nature time','Shade breaks','Fresh water']})
-  useEffect(() => {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=30.3322&longitude=-81.6557&current=temperature_2m,weather_code,precipitation,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FNew_York')
-      .then(r => r.json()).then(data => {
-        const c = data.current, t = Math.round(c.temperature_2m), code = c.weather_code
-        let icon='☀', status='A beautiful day for outdoor play.', activities=['Fetch','Nature time','Shade breaks','Fresh water']
-        if ([1,2,3].includes(code)) { icon='⛅'; status='Comfortable conditions for play and exploring.' }
-        if ([51,53,55,61,63,65,80,81,82].includes(code) || c.precipitation > 0) { icon='🌦'; status='Mixed weather—playtime adjusted as needed.'; activities=['Covered breaks','Indoor comfort','Fresh water','Flexible play'] }
-        if ([95,96,99].includes(code)) { icon='⛈'; status='Stormy conditions—safety-first indoor care.'; activities=['Indoor play','Calm rest','Fresh water','Weather monitoring'] }
-        if (t >= 90) { status='Warm weather with extra water and shade breaks.'; activities=['Morning play','Shade breaks','Fresh water','Cool-down time'] }
-        setWeather({temp:`${t}°`,icon,status,note:`Jacksonville · Wind ${Math.round(c.wind_speed_10m)} mph`,activities})
-      }).catch(() => {})
-  }, [])
-  return <section className="forecast-section" id="forecast"><Reveal className="forecast-card">
-    <div><p className="eyebrow dark">Today in The Meadow</p><h2>Today's Play Forecast</h2></div>
-    <div className="forecast-main"><span className="weather-icon">{weather.icon}</span><span className="forecast-temp">{weather.temp}</span><div><p className="forecast-status">{weather.status}</p><p className="forecast-note">{weather.note}</p></div></div>
-    <div className="activity-list">{weather.activities.map(a => <span key={a}>{a}</span>)}</div>
-  </Reveal></section>
+const galleryPhotos = [
+  ['/assets/video/gallery-run-new.mp4', 'Dog enjoying an energetic outdoor run', 'Outdoor energy', 'video'],
+  ['/assets/images/gallery/meadow-play.jpg', "Dog exploring the grass at Nick's Doggy Daycare", 'Room to explore'],
+  ['/assets/images/gallery/friends.jpg', 'Two happy dogs spending time together', 'Good company'],
+  ['/assets/images/gallery/home-comfort.jpg', 'Small dog relaxing comfortably indoors', 'Care that feels familiar'],
+  ['/assets/images/gallery/meadow-rest.jpg', 'Two dogs relaxing together in the natural grass at The Meadow', 'Meadow rest'],
+  ['/assets/images/meadow-running.jpg', 'Dog running through the grass at The Meadow', 'Meadow running'],
+  ['/assets/images/gallery/sunlit-rest.jpg', 'Apricot Goldendoodle relaxing in the sun on warm pavers', 'Sunlit rest'],
+  ['/assets/images/gallery/resting.jpg', 'Dog resting peacefully in a home environment', 'Time to recharge'],
+  ['/assets/images/gallery/sibling-time.jpg', 'Two French Bulldogs relaxing together in a cozy home setting', 'Sibling time'],
+  ['/assets/images/gallery/adventure.jpg', 'Dog enjoying an outdoor adventure near the beach', 'Care beyond the ordinary'],
+  ['/assets/images/gallery/home-care.jpg', 'Dogs receiving comfortable home-style care', 'Home-style comfort'],
+  ['/assets/images/social-preview.jpeg', "Nick's Doggy Daycare", 'Nick’s Doggy Daycare'],
+  ['/assets/images/home-style-rest.jpg', 'Dog relaxing comfortably at home', 'Home-style rest'],
+  ['/assets/images/at-home-visits-new.jpg', 'Three French Bulldogs during an at-home visit', 'At-home visits'],
+  ['/assets/images/daycare.jpg', "Dog enjoying daycare at Nick's Doggy Daycare", 'Daycare'],
+  ['/assets/images/gallery/fetch.jpg', 'Dog playing fetch outdoors', 'Play with purpose'],
+]
+
+const faqs = [
+  ['Which areas do you serve?', 'Jacksonville, Ponte Vedra, Ponte Vedra Beach, Nocatee, and northern Saint Johns County.'],
+  ['Is transportation included?', 'Yes. Complimentary pickup and drop-off are included, subject to availability and service-area limits.'],
+  ['What should I pack for boarding?', "Your dog's regular food, instructions, medications, and any approved comfort item."],
+  ['How do I request a booking?', 'Use Start Your Booking. New customers can contact us directly, while returning customers can continue in the app.'],
+]
+
+
+function getWeatherSymbol(code) {
+  const value = String(code || '').toLowerCase()
+
+  if (value.includes('thunder')) return '⛈'
+  if (value.includes('rain') || value.includes('shower')) return '☂'
+  if (value.includes('fog') || value.includes('haze')) return '◌'
+  if (value.includes('cloud') || value.includes('overcast')) return '☁'
+  return '☀'
 }
 
-const benefits = [['01','Natural Space','Real grass, fresh air, shade, and space to move freely.'],['02','Home-Style Care','A personal and comfortable alternative to an industrial kennel.'],['03','Free Transportation','We handle pickup and drop-off so your day keeps moving.'],['04','Peace of Mind','Attentive supervision, dependable communication, and thoughtful care.']]
-const timeline = [['01','Morning pickup','A convenient start to the day.'],['02','Outdoor play','Time to run, explore, and socialize.'],['03','Water and rest','Fresh water and calm shade breaks.'],['04','Ride home','Happy, exercised, and ready to relax.']]
-const faqs = [['Which areas do you serve?','Jacksonville, Ponte Vedra, Ponte Vedra Beach, Nocatee, and northern Saint Johns County.'],['Is transportation included?','Yes. Complimentary pickup and drop-off are included, subject to availability and service-area limits.'],['What should I pack for boarding?',"Your dog's regular food, instructions, medications, and any approved comfort item."],['How do I request a booking?','Use the inquiry button below. We will confirm availability and care requirements directly.']]
+function getMeadowWeatherMessage(shortForecast, temperature) {
+  const forecast = String(shortForecast || '').toLowerCase()
+
+  if (forecast.includes('thunder')) return 'Cozy breaks between the storms'
+  if (forecast.includes('rain') || forecast.includes('shower')) return 'Fresh grass & cozy breaks'
+  if (temperature >= 90) return 'Shade, water & plenty of breaks'
+  if (temperature <= 55) return 'Cool air, happy paws'
+  if (forecast.includes('cloud') || forecast.includes('overcast')) return 'Comfortable Meadow weather'
+  return 'A beautiful day for The Meadow'
+}
 
 export default function App() {
   const [bookingType, setBookingType] = useState(null)
-  return <><Header onBooking={setBookingType}/><main><Hero onBooking={setBookingType}/><Forecast/>
-    <section className="intro-section section-padding"><div className="section-grid"><Reveal><p className="eyebrow dark">A different kind of dog care</p><h2>A home away from home.</h2></Reveal><Reveal delay={.12}><p className="large-copy">Natural grass, open air, room to explore, and a calm home-style environment—far from the concrete and noise of an office plaza.</p></Reveal></div></section>
-    <section className="feature-image-section" id="meadow"><Reveal className="image-panel meadow-panel"><div className="panel-copy"><p className="eyebrow">The Meadow</p><h2>Over half an acre of fenced green space.</h2><p>A place we've come to call The Meadow—where dogs spend their days running, exploring, resting under the trees, and simply being dogs.</p></div></Reveal></section>
-    <section className="meadow-video-section section-padding"><div className="meadow-video-grid"><Reveal className="meadow-video-copy"><p className="eyebrow dark">Life in The Meadow</p><h2>Movement, play, and room to breathe.</h2><p>Open grass gives dogs space to run together, explore at their own pace, and enjoy the outdoors beyond a typical daycare setting.</p></Reveal><Reveal className="meadow-video-frame portrait-film" delay={.12}><video autoPlay muted loop playsInline poster="/assets/images/property.jpg"><source src="/assets/video/meadow-running.mp4" type="video/mp4"/></video><div className="video-caption"><span>Morning light</span><span>Room to run</span></div></Reveal></div></section>
-    <section className="benefits section-padding" id="experiences"><Reveal className="section-heading"><p className="eyebrow dark">Why families choose us</p><h2>Care designed around your dog—and your life.</h2></Reveal><div className="benefit-grid">{benefits.map(([n,t,c],i)=><Reveal className="benefit-card" delay={i*.08} key={t}><span className="number">{n}</span><h3>{t}</h3><p>{c}</p></Reveal>)}</div></section>
-    <section className="split-section"><Reveal className="split-panel split-daycare"><div><p className="eyebrow">For busy professionals</p><h2>Your day is busy enough.<br/>We'll handle the drive.</h2><p>Daycare with complimentary pickup and drop-off.</p><button
-  className="text-link booking-text-link"
-  onClick={() => setBookingType('daycare')}
->
-  Ask about daycare <span>→</span>
-</button></div></Reveal><Reveal className="split-panel split-boarding" delay={.1}><div><p className="eyebrow">For frequent travelers</p><h2>Your dog's vacation<br/>while you're on yours.</h2><p>Comfortable overnight care in a peaceful home environment.</p><button
-  className="text-link booking-text-link"
-  onClick={() => setBookingType('boarding')}
->
-  Ask about boarding <span>→</span>
-</button></div></Reveal></section>
-    <section className="home-style-story section-padding"><div className="home-style-grid"><div className="home-style-visuals"><Reveal className="home-style-image"><img src="/assets/images/home-style-rest.jpg" alt="Small apricot dog resting comfortably in a home setting" loading="lazy"/></Reveal><Reveal className="quiet-film" delay={.1}><video autoPlay muted loop playsInline><source src="/assets/video/quiet-tail.mp4" type="video/mp4"/></video><span>Comfort in the little moments</span></Reveal></div><Reveal className="home-style-copy" delay={.12}><p className="eyebrow dark">Home-style boarding</p><h2>Comfort should feel familiar.</h2><p>Overnight care is designed to feel personal, calm, and reassuring—not like a row of kennels. Quiet indoor moments are part of the experience, too.</p></Reveal></div></section>
-    <section className="day-section section-padding"><Reveal className="section-heading"><p className="eyebrow dark">A day at Nick's</p><h2>A day well spent.</h2></Reveal><Reveal className="day-film portrait-day-film"><video autoPlay muted loop playsInline poster="/assets/images/daycare.jpg"><source src="/assets/video/day-outdoor.mp4" type="video/mp4"/></video><div className="day-film-overlay"><p className="eyebrow">Outdoor time</p><h3>Play, pause, explore, repeat.</h3></div></Reveal><div className="timeline">{timeline.map(([n,t,c],i)=><Reveal className="timeline-item" delay={i*.08} key={t}><span>{n}</span><h3>{t}</h3><p>{c}</p></Reveal>)}</div></section>
-    <section className="pricing-section section-padding" id="pricing"><Reveal className="section-heading"><p className="eyebrow dark">Simple pricing</p><h2>Care designed around your needs.</h2><p className="pricing-intro">Simple, transparent pricing. Every service includes complimentary transportation throughout Jacksonville and Ponte Vedra, as we believe spending time with your dog is more valuable than spending time in traffic.</p></Reveal><div className="pricing-grid"><Reveal className="pricing-card"><p className="eyebrow dark">Daycare</p><h3>$75 <span>/ first dog</span></h3><p>$55 second dog · $40 each additional dog</p></Reveal><Reveal className="pricing-card featured"><p className="eyebrow">Daycare + Overnight Boarding</p><h3>$100 <span>/ first dog</span></h3><p className="pricing-clarification">Includes a full day of daycare.</p><p>$75 second dog · $50 each additional dog</p></Reveal><Reveal className="pricing-card"><p className="eyebrow dark">At-Home Pet Visits</p><h3>From $35 <span>/ visit</span></h3><p>Personalized care for pets who are happiest at home.</p></Reveal></div><p className="pricing-note">Multi-dog discounts apply to dogs from the same household.</p></section>
-    <section className="gallery section-padding" id="gallery"><Reveal className="section-heading"><p className="eyebrow dark">Life at Nick's</p><h2>Real dogs. Real care. Room to simply be themselves.</h2></Reveal><div className="gallery-grid gallery-editorial">
-      <Reveal className="gallery-photo gallery-large"><img src="/assets/images/gallery/sunlit-rest.jpg" alt="Apricot Goldendoodle relaxing in the sun on warm pavers" loading="lazy"/><span>Sunlit rest</span></Reveal>
-      <Reveal className="gallery-photo gallery-wide" delay={.06}><img src="/assets/images/gallery/meadow-play.jpg" alt="Dog exploring the grass at Nick's Doggy Daycare" loading="lazy"/><span>Room to explore</span></Reveal>
-      <Reveal className="gallery-photo" delay={.1}><img src="/assets/images/gallery/home-care.jpg" alt="Dogs receiving comfortable home-style care" loading="lazy"/><span>Home-style comfort</span></Reveal>
-      <Reveal className="gallery-photo" delay={.14}><img src="/assets/images/gallery/home-comfort.jpg" alt="Small dog relaxing comfortably indoors" loading="lazy"/><span>Care that feels familiar</span></Reveal>
-      <Reveal className="gallery-photo gallery-wide" delay={.08}><img src="/assets/images/gallery/friends.jpg" alt="Two happy dogs spending time together" loading="lazy"/><span>Good company</span></Reveal>
-      <Reveal className="gallery-photo" delay={.12}><img src="/assets/images/gallery/resting.jpg" alt="Dog resting peacefully in a home environment" loading="lazy"/><span>Time to recharge</span></Reveal>
-      <Reveal className="gallery-photo" delay={.16}><img src="/assets/images/gallery/adventure.jpg" alt="Dog enjoying an outdoor adventure near the beach" loading="lazy"/><span>Care beyond the ordinary</span></Reveal>
-      <Reveal className="gallery-photo" delay={.17}>
-  <img
-    src="/assets/images/gallery/sibling-time.jpg"
-    alt="Two French Bulldogs relaxing together in a cozy home setting"
-    loading="lazy"
-  />
-  <span>Sibling time</span>
-</Reveal>
-      <Reveal className="gallery-photo gallery-wide" delay={.18}><img src="/assets/images/gallery/fetch.jpg" alt="Dog playing fetch outdoors" loading="lazy"/><span>Play with purpose</span></Reveal>
-</div></section>
-    <section className="faq-section section-padding" id="faq"><Reveal className="section-heading"><p className="eyebrow dark">Frequently asked questions</p><h2>Everything you need to feel prepared.</h2></Reveal><div className="faq-list">{faqs.map(([q,a])=><Reveal key={q}><details><summary>{q}</summary><p>{a}</p></details></Reveal>)}</div></section>
-    <section className="meet-nick-teaser section-padding">
-  <div className="meet-nick-teaser-grid">
-    <Reveal className="meet-nick-teaser-copy">
-      <p className="eyebrow dark">Meet Nick</p>
+  const [showAllPhotos, setShowAllPhotos] = useState(false)
+  const [meadowWeather, setMeadowWeather] = useState(null)
 
-      <h2>The person behind Nick&apos;s Doggy Daycare.</h2>
+  useEffect(() => {
+    let cancelled = false
 
-      <p>
-        Personal care starts with knowing who&apos;s behind it.
-        Learn more about Nick&apos;s lifelong experience caring for dogs
-        and the thoughtful approach he brings to every visit.
-      </p>
+    async function loadMeadowWeather() {
+      try {
+        // General Jacksonville coordinates are intentional: the public site
+        // does not expose Nick's exact property location.
+        const pointResponse = await fetch(
+          'https://api.weather.gov/points/30.3322,-81.6557'
+        )
 
-      <Link className="meet-nick-link" to="/meet-nick">
-        Get to know Nick <span>→</span>
-      </Link>
-    </Reveal>
+        if (!pointResponse.ok) throw new Error('Unable to load weather point')
 
-  </div>
-</section>
-    <section className="final-cta" id="contact"><div className="final-overlay"/><Reveal className="final-content"><p className="eyebrow">Ready when you are</p><h2>Give your dog a place they'll love coming back to.</h2><p>Tell us what you need and we will follow up with availability.</p><button
-  className="button button-primary"
-  onClick={() => setBookingType('general')}
->
-  Start Your Booking
-</button></Reveal></section>
-  </main>
+        const pointData = await pointResponse.json()
+        const hourlyUrl = pointData?.properties?.forecastHourly
 
-{bookingType && (
-  <BookingModal
-    bookingType={bookingType}
-    onClose={() => setBookingType(null)}
-  />
-)}
+        if (!hourlyUrl) throw new Error('Hourly forecast unavailable')
 
-<footer className="footer"><div><p className="footer-brand">Nick's Doggy Daycare</p><p>Happy pets. Peace of mind.</p></div><div><p>Jacksonville & Ponte Vedra</p><p>Daycare · Boarding · At-Home Visits · Transportation</p></div><p>© {new Date().getFullYear()} Nick's Doggy Daycare</p></footer></>
+        const forecastResponse = await fetch(hourlyUrl)
+
+        if (!forecastResponse.ok) throw new Error('Unable to load hourly weather')
+
+        const forecastData = await forecastResponse.json()
+        const current = forecastData?.properties?.periods?.[0]
+
+        if (!current || typeof current.temperature !== 'number') {
+          throw new Error('Weather data incomplete')
+        }
+
+        if (!cancelled) {
+          setMeadowWeather({
+            temperature: current.temperature,
+            shortForecast: current.shortForecast || '',
+          })
+        }
+      } catch (error) {
+        console.error('Unable to load Meadow weather:', error)
+      }
+    }
+
+    void loadMeadowWeather()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return (
+    <>
+      <Header onBooking={setBookingType} />
+
+      <main>
+        <Hero onBooking={setBookingType} />
+
+        <section className="meadow-compact" id="meadow">
+          <Reveal className="meadow-compact-card">
+            <div className="meadow-compact-copy">
+              <p className="eyebrow">The Meadow</p>
+              <h2>More grass<br />More freedom</h2>
+              <p>
+                Over half an acre of fenced natural space for running,
+                resting, and being dogs.
+              </p>
+            </div>
+            {meadowWeather && (
+              <div className="meadow-weather" aria-label="Current Jacksonville weather">
+                <span className="meadow-weather-icon" aria-hidden="true">
+                  {getWeatherSymbol(meadowWeather.shortForecast)}
+                </span>
+                <span className="meadow-weather-temp">{Math.round(meadowWeather.temperature)}°</span>
+                <span className="meadow-weather-divider" aria-hidden="true" />
+                <span className="meadow-weather-copy">
+                  <strong>{getMeadowWeatherMessage(meadowWeather.shortForecast, meadowWeather.temperature)}</strong>
+                  <small>Jacksonville · Live forecast</small>
+                </span>
+              </div>
+            )}
+          </Reveal>
+        </section>
+
+        <section className="services-compact" id="experiences">
+          <Reveal className="compact-heading">
+            <p className="eyebrow dark">Care, your way</p>
+            <h2>Three ways to book</h2>
+          </Reveal>
+
+          <div className="service-cards">
+            <Reveal className="service-card service-daycare">
+              <div>
+                <p className="eyebrow">Daycare</p>
+                <h3>Play all day<br />Come home happy</h3>
+                <button className="text-link booking-text-link" onClick={() => setBookingType('daycare')}>
+                  Start daycare booking <span>→</span>
+                </button>
+              </div>
+            </Reveal>
+
+            <Reveal className="service-card service-boarding" delay={.08}>
+              <div>
+                <p className="eyebrow">Overnight Boarding</p>
+                <h3>A stay that feels<br />like home</h3>
+                <button className="text-link booking-text-link" onClick={() => setBookingType('boarding')}>
+                  Start boarding booking <span>→</span>
+                </button>
+              </div>
+            </Reveal>
+
+            <Reveal className="service-card service-visits" delay={.16}>
+              <div>
+                <p className="eyebrow">At-Home Visits</p>
+                <h3>Care without<br />leaving home</h3>
+                <button className="text-link booking-text-link" onClick={() => setBookingType('general')}>
+                  Ask about visits <span>→</span>
+                </button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="pricing-section compact-section" id="pricing">
+          <Reveal className="compact-heading">
+            <p className="eyebrow dark">Prices</p>
+            <h2>Simple pricing</h2>
+          </Reveal>
+
+          <div className="pricing-grid pricing-grid-compact">
+            <Reveal className="pricing-card">
+              <div>
+                <p className="eyebrow dark">Daycare</p>
+                <h3>$75 <span>/ first dog</span></h3>
+              </div>
+              <p>$55 second dog · $40 each additional</p>
+            </Reveal>
+
+            <Reveal className="pricing-card featured" delay={.06}>
+              <div>
+                <p className="eyebrow">Daycare + Overnight Boarding</p>
+                <h3>$100 <span>/ first dog / night</span></h3>
+              </div>
+              <p>Includes a full day of daycare<br />$75 second dog · $50 each additional</p>
+            </Reveal>
+
+            <Reveal className="pricing-card" delay={.12}>
+              <div>
+                <p className="eyebrow dark">At-Home Pet Visits</p>
+                <h3>From $35 <span>/ visit</span></h3>
+              </div>
+              <p>Personalized care for pets happiest at home</p>
+            </Reveal>
+          </div>
+
+          <p className="pricing-note">
+            Complimentary transportation is included with daycare and boarding.
+            Multi-dog discounts apply to the same household. Ask about new and returning customer discounts!
+          </p>
+        </section>
+
+        <section className="details-hub compact-section" id="details">
+          <Reveal className="compact-heading">
+            <p className="eyebrow dark">Want to know more?</p>
+            <h2>The details are here when you need them</h2>
+          </Reveal>
+
+          <div className="detail-accordion">
+            <details>
+              <summary>
+                <span>Why families choose us</span>
+                <ChevronDown aria-hidden="true" />
+              </summary>
+              <div className="detail-body detail-grid">
+                <div><strong>Natural Space</strong><p>Real grass, fresh air, shade, and room to move freely.</p></div>
+                <div><strong>Home-Style Care</strong><p>A personal, comfortable alternative to an industrial kennel.</p></div>
+                <div><strong>Free Transportation</strong><p>We handle pickup and drop-off so your day keeps moving.</p></div>
+                <div><strong>Peace of Mind</strong><p>Attentive supervision, dependable communication, and thoughtful care.</p></div>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span>What a day at Nick's looks like</span>
+                <ChevronDown aria-hidden="true" />
+              </summary>
+              <div className="detail-body day-detail">
+                <div><span>01</span><strong>Morning pickup</strong><p>A convenient start to the day.</p></div>
+                <div><span>02</span><strong>Outdoor play</strong><p>Time to run, explore, and socialize.</p></div>
+                <div><span>03</span><strong>Water & rest</strong><p>Fresh water and calm shade breaks.</p></div>
+                <div><span>04</span><strong>Ride home</strong><p>Happy, exercised, and ready to relax.</p></div>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span>Home-style boarding</span>
+                <ChevronDown aria-hidden="true" />
+              </summary>
+              <div className="detail-body detail-story">
+                <img
+                  src="/assets/images/home-style-rest.jpg"
+                  alt="Small apricot dog resting comfortably in a home setting"
+                  loading="lazy"
+                />
+                <div>
+                  <h3>Comfort should feel familiar.</h3>
+                  <p>
+                    Overnight care is designed to feel personal, calm, and reassuring—not
+                    like a row of kennels. Quiet indoor moments are part of the experience, too.
+                  </p>
+                </div>
+              </div>
+            </details>
+
+            <details>
+              <summary>
+                <span>What makes The Meadow different</span>
+                <ChevronDown aria-hidden="true" />
+              </summary>
+              <div className="detail-body detail-story">
+                <video autoPlay muted loop playsInline preload="metadata" aria-label="Two dogs running together at The Meadow">
+                  <source src="/assets/video/zoomies.mp4" type="video/mp4" />
+                </video>
+                <div>
+                  <h3>Movement, play, and room to breathe.</h3>
+                  <p>
+                    Open grass gives dogs space to run together, explore at their own pace,
+                    and enjoy the outdoors beyond a typical daycare setting.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section className="gallery gallery-compact compact-section" id="gallery">
+          <Reveal className="compact-heading">
+            <p className="eyebrow dark">Hall of fame</p>
+            <h2>Your favorite faces</h2>
+          </Reveal>
+
+          <div className={`gallery-dropdown-grid ${showAllPhotos ? 'expanded' : ''}`}>
+            {galleryPhotos.map(([src, alt, caption, mediaType], index) => (
+              <Reveal
+                className={`gallery-photo ${index >= 4 ? 'gallery-extra' : ''}`}
+                delay={Math.min(index, 3) * .05}
+                key={src}
+              >
+                {mediaType === 'video' ? (
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={alt}
+                  >
+                    <source src={src} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img src={src} alt={alt} loading="lazy" />
+                )}
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="gallery-toggle-wrap">
+            <button
+              className="gallery-toggle"
+              type="button"
+              aria-expanded={showAllPhotos}
+              onClick={() => setShowAllPhotos(!showAllPhotos)}
+            >
+              {showAllPhotos ? 'Show fewer photos' : 'View all photos'}
+              <ChevronDown className={showAllPhotos ? 'rotated' : ''} aria-hidden="true" />
+            </button>
+          </div>
+        </section>
+
+        <section className="meet-nick-teaser compact-section">
+          <div className="meet-nick-teaser-grid">
+            <Reveal className="meet-nick-teaser-copy">
+              <p className="eyebrow dark">Meet Nick</p>
+              <h2>The person behind Nick&apos;s Doggy Daycare</h2>
+              <p>
+                Personal care starts with knowing who&apos;s behind it. Learn more about
+                Nick&apos;s lifelong experience caring for dogs.
+              </p>
+              <Link className="meet-nick-link" to="/meet-nick">
+                Get to know Nick <span>→</span>
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="faq-section compact-section" id="faq">
+          <Reveal className="compact-heading">
+            <p className="eyebrow dark">FAQs</p>
+            <h2>Before you book</h2>
+          </Reveal>
+
+          <div className="faq-list faq-list-compact">
+            {faqs.map(([q, a]) => (
+              <Reveal key={q}>
+                <details>
+                  <summary>{q}</summary>
+                  <p>{a}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="final-cta final-cta-compact" id="contact">
+          <div className="final-overlay" />
+          <Reveal className="final-content">
+            <p className="eyebrow">Happy pets. Peace of mind.</p>
+            <h2>Ready when you are</h2>
+            <button className="button button-primary" onClick={() => setBookingType('general')}>
+              Start Your Booking
+            </button>
+          </Reveal>
+        </section>
+      </main>
+
+      {bookingType && (
+        <BookingModal
+          bookingType={bookingType}
+          onClose={() => setBookingType(null)}
+        />
+      )}
+
+      <footer className="footer footer-compact">
+        <div>
+          <p className="footer-brand">Nick's Doggy Daycare</p>
+          <p>Happy pets. Peace of mind.</p>
+        </div>
+        <div>
+          <p>Jacksonville & Ponte Vedra</p>
+          <p>Daycare · Boarding · At-Home Visits · Transportation</p>
+        </div>
+        <div className="footer-legal">
+          <Link className="footer-privacy-link" to="/privacy">Privacy Policy</Link>
+          <p>© {new Date().getFullYear()} Nick's Doggy Daycare</p>
+        </div>
+      </footer>
+    </>
+  )
 }
