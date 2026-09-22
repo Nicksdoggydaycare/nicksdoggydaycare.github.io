@@ -29,7 +29,10 @@ function Header({ onBooking }) {
 
   return (
     <header className={`site-header ${scrolled ? 'scrolled' : ''}`}>
-      <a className={`brand ${scrolled ? "brand-visible" : "brand-hero-hidden"}`} href="#top">
+      <a
+        className={`brand ${scrolled ? 'brand-visible' : 'brand-hero-hidden'}`}
+        href="#top"
+      >
         <span className="brand-main">Nick's</span>
         <span className="brand-sub">Doggy Daycare</span>
       </a>
@@ -38,26 +41,57 @@ function Header({ onBooking }) {
         className="menu-toggle"
         onClick={() => setOpen(!open)}
         aria-label="Toggle navigation"
+        aria-expanded={open}
       >
         {open ? <X /> : <Menu />}
       </button>
 
       <nav className={`site-nav ${open ? 'open' : ''}`}>
-        <a href="#meadow" onClick={() => setOpen(false)}>The Meadow</a>
-        <a href="#experiences" onClick={() => setOpen(false)}>Services</a>
-        <a href="#pricing" onClick={() => setOpen(false)}>Pricing</a>
-        <a href="#gallery" onClick={() => setOpen(false)}>Gallery</a>
-        <a href="#faq" onClick={() => setOpen(false)}>FAQ</a>
-        <button
-          className="button button-small button-light"
-          onClick={() => {
-            onBooking('general')
-            setOpen(false)
-          }}
-        >
-          Start Your Booking
-        </button>
-      </nav>
+  <div className="nav-services">
+    <button
+      type="button"
+      className="nav-services-label"
+    >
+      Services
+    </button>
+
+    <div className="nav-services-menu">
+      <Link to="/daycare" onClick={() => setOpen(false)}>
+        Daycare
+      </Link>
+
+      <Link to="/boarding" onClick={() => setOpen(false)}>
+        Boarding
+      </Link>
+
+      <Link to="/at-home-visits" onClick={() => setOpen(false)}>
+        At-Home Visits
+      </Link>
+    </div>
+  </div>
+
+  <a href="#pricing" onClick={() => setOpen(false)}>
+    Pricing
+  </a>
+
+  <a href="#gallery" onClick={() => setOpen(false)}>
+    Gallery
+  </a>
+
+  <a href="#faq" onClick={() => setOpen(false)}>
+    FAQ
+  </a>
+
+  <button
+    className="button button-small button-light"
+    onClick={() => {
+      onBooking('general')
+      setOpen(false)
+    }}
+  >
+    Start Your Booking
+  </button>
+</nav>
     </header>
   )
 }
@@ -274,36 +308,36 @@ export default function App() {
           </Reveal>
 
           <div className="service-cards">
-            <Reveal className="service-card service-daycare">
-              <div>
-                <p className="eyebrow">Daycare</p>
-                <h3>Play all day<br />Come home happy</h3>
-                <button className="text-link booking-text-link" onClick={() => setBookingType('daycare')}>
-                  Start daycare booking <span>→</span>
-                </button>
-              </div>
-            </Reveal>
+  <Reveal className="service-card service-daycare">
+    <div>
+      <p className="eyebrow">Daycare</p>
+      <h3>Play all day<br />Come home happy</h3>
+      <Link className="text-link booking-text-link" to="/daycare">
+        Explore daycare <span>→</span>
+      </Link>
+    </div>
+  </Reveal>
 
-            <Reveal className="service-card service-boarding" delay={.08}>
-              <div>
-                <p className="eyebrow">Overnight Boarding</p>
-                <h3>A stay that feels<br />like home</h3>
-                <button className="text-link booking-text-link" onClick={() => setBookingType('boarding')}>
-                  Start boarding booking <span>→</span>
-                </button>
-              </div>
-            </Reveal>
+  <Reveal className="service-card service-boarding" delay={.08}>
+    <div>
+      <p className="eyebrow">Overnight Boarding</p>
+      <h3>A stay that feels<br />like home</h3>
+      <Link className="text-link booking-text-link" to="/boarding">
+        Explore boarding <span>→</span>
+      </Link>
+    </div>
+  </Reveal>
 
-            <Reveal className="service-card service-visits" delay={.16}>
-              <div>
-                <p className="eyebrow">At-Home Visits</p>
-                <h3>Care without<br />leaving home</h3>
-                <button className="text-link booking-text-link" onClick={() => setBookingType('general')}>
-                  Ask about visits <span>→</span>
-                </button>
-              </div>
-            </Reveal>
-          </div>
+  <Reveal className="service-card service-visits" delay={.16}>
+    <div>
+      <p className="eyebrow">At-Home Visits</p>
+      <h3>Care without<br />leaving home</h3>
+      <Link className="text-link booking-text-link" to="/at-home-visits">
+        Explore at-home visits <span>→</span>
+      </Link>
+    </div>
+  </Reveal>
+</div>
         </section>
 
         <section className="pricing-section compact-section" id="pricing">
