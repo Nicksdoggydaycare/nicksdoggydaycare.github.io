@@ -118,6 +118,35 @@ export default function Boarding() {
 
     window.scrollTo(0, 0)
 
+    useEffect(() => {
+  document.title = "Dog Boarding in Jacksonville, FL | Nick's Doggy Daycare"
+
+  const description =
+    "Dog boarding in Jacksonville, FL with home-style overnight care, a full day of daycare included, and complimentary pickup and drop-off."
+
+  let meta = document.querySelector('meta[name="description"]')
+
+  if (!meta) {
+    meta = document.createElement('meta')
+    meta.setAttribute('name', 'description')
+    document.head.appendChild(meta)
+  }
+
+  meta.setAttribute('content', description)
+  let canonical = document.querySelector('link[rel="canonical"]')
+
+if (!canonical) {
+  canonical = document.createElement('link')
+  canonical.setAttribute('rel', 'canonical')
+  document.head.appendChild(canonical)
+}
+
+canonical.setAttribute(
+  'href',
+  'https://www.nicksdoggydaycare.com/boarding'
+)
+}, [])
+
     return () => {
       document.title = previousTitle
 
