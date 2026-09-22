@@ -3394,7 +3394,7 @@ html {
   right: 0;
 }
 
-@media (min-width: px) {
+@media (min-width: 801px) {
   .menu-toggle {
     display: none;
   }
