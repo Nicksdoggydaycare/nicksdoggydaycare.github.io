@@ -2264,9 +2264,9 @@ html {
 .service-page-feature { padding: 0 4vw; }
 
 .service-page-feature-card {
-  --meadow-image-x: 28%;
-  --meadow-image-y: 225%;
-  --meadow-image-zoom: 1.42;
+  --meadow-image-x: 50%;
+  --meadow-image-y: 50%;
+  --meadow-image-zoom: 1;
 
   position: relative;
   width: min(1320px, 100%);
@@ -3654,5 +3654,30 @@ html {
   .nav-services-menu a::after {
     display: none !important;
     content: none !important;
+  }
+}
+/* =========================================================
+   Meadow card — final responsive photo framing
+   ========================================================= */
+.meadow-compact-card {
+  background-image: url("/assets/images/meadow-running.jpg") !important;
+  background-size: 100% auto !important;
+  background-position: center 42% !important;
+  background-repeat: no-repeat !important;
+  background-color: #173a2c !important;
+}
+
+@media (max-width: 640px) {
+  .meadow-compact-card {
+    background-size: cover !important;
+    background-position: center 52% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-page-feature-card {
+    --meadow-image-x: 50%;
+    --meadow-image-y: 175%;
+    --meadow-image-zoom: 1.42;
   }
 }

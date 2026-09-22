@@ -154,20 +154,59 @@ export default function AtHomeVisits() {
   const [galleryOpen, setGalleryOpen] = useState(false)
 
   useEffect(() => {
-    document.title =
-      "At-Home Pet Visits in Jacksonville, FL | Nick's Doggy Daycare"
+  const previousTitle = document.title
 
-    let meta = document.querySelector('meta[name="description"]')
+  let meta = document.querySelector('meta[name="description"]')
+  const metaWasCreated = !meta
+  const previousDescription = meta?.getAttribute('content') || ''
 
-    if (!meta) {
-      meta = document.createElement('meta')
-      meta.name = 'description'
-      document.head.appendChild(meta)
+  let canonical = document.querySelector('link[rel="canonical"]')
+  const canonicalWasCreated = !canonical
+  const previousCanonical = canonical?.getAttribute('href') || ''
+
+  document.title =
+    "At-Home Pet Visits in Jacksonville, FL | Nick's Doggy Daycare"
+
+  if (!meta) {
+    meta = document.createElement('meta')
+    meta.setAttribute('name', 'description')
+    document.head.appendChild(meta)
+  }
+
+  meta.setAttribute(
+    'content',
+    "At-home pet visits in Jacksonville, FL for pets who are most comfortable at home, with personalized care, feeding, potty breaks, and updates."
+  )
+
+  if (!canonical) {
+    canonical = document.createElement('link')
+    canonical.setAttribute('rel', 'canonical')
+    document.head.appendChild(canonical)
+  }
+
+  canonical.setAttribute(
+    'href',
+    'https://www.nicksdoggydaycare.com/at-home-visits'
+  )
+
+  window.scrollTo(0, 0)
+
+  return () => {
+    document.title = previousTitle
+
+    if (metaWasCreated) {
+      meta?.remove()
+    } else {
+      meta?.setAttribute('content', previousDescription)
     }
 
-    meta.content =
-      'Personalized at-home pet visits in Jacksonville, FL with feeding, walks, playtime, medication help, companionship, and care updates while you are away.'
-  }, [])
+    if (canonicalWasCreated) {
+      canonical?.remove()
+    } else {
+      canonical?.setAttribute('href', previousCanonical)
+    }
+  }
+}, [])
 
   useEffect(() => {
     let map
@@ -248,35 +287,6 @@ export default function AtHomeVisits() {
         setTimeout(() => map?.invalidateSize(), 0)
       })
       .catch(() => {})
-
-      useEffect(() => {
-  document.title = "At-Home Pet Visits in Jacksonville, FL | Nick's Doggy Daycare"
-
-  const description =
-    "At-home pet visits in Jacksonville, FL for pets who are most comfortable at home, with personalized care, feeding, potty breaks, and updates."
-
-  let meta = document.querySelector('meta[name="description"]')
-
-  if (!meta) {
-    meta = document.createElement('meta')
-    meta.setAttribute('name', 'description')
-    document.head.appendChild(meta)
-  }
-
-  meta.setAttribute('content', description)
-  let canonical = document.querySelector('link[rel="canonical"]')
-
-if (!canonical) {
-  canonical = document.createElement('link')
-  canonical.setAttribute('rel', 'canonical')
-  document.head.appendChild(canonical)
-}
-
-canonical.setAttribute(
-  'href',
-  'https://www.nicksdoggydaycare.com/at-home-visits'
-)
-}, [])
 
     return () => {
       cancelled = true
