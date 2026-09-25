@@ -76,6 +76,7 @@ Thank you!`,
 }
 
 const APP_SCHEME = 'nicksdoggydaycareapp://'
+const APP_STORE_URL = 'https://apps.apple.com/us/app/nicks-doggy-daycare/id6811093937'
 
 export default function BookingModal({
   bookingType = 'general',
@@ -131,9 +132,29 @@ export default function BookingModal({
   }
 
   const handleOpenApp = () => {
-    setAppLaunchAttempted(true)
-    window.location.href = APP_SCHEME
+  setAppLaunchAttempted(true)
+
+  const fallbackTimer = window.setTimeout(() => {
+    window.location.href = APP_STORE_URL
+  }, 1800)
+
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      window.clearTimeout(fallbackTimer)
+      document.removeEventListener(
+        'visibilitychange',
+        handleVisibilityChange
+      )
+    }
   }
+
+  document.addEventListener(
+    'visibilitychange',
+    handleVisibilityChange
+  )
+
+  window.location.href = APP_SCHEME
+}
 
   const goBack = () => {
     setAppLaunchAttempted(false)
@@ -245,7 +266,12 @@ export default function BookingModal({
       </p>
 
       <div className="booking-app-panel">
-        <div className="booking-app-icon" aria-hidden="true">🐾</div>
+        <div className="booking-app-icon">
+  <img
+    src="/assets/images/app-icon.png"
+    alt="Nick's Doggy Daycare app icon"
+  />
+</div>
         <div className="booking-app-copy">
           <h3>Nick's Doggy Daycare</h3>
           <p>Bookings, dog profiles, updates, payments, and more—all in one place.</p>
@@ -261,10 +287,10 @@ export default function BookingModal({
       </button>
 
       {appLaunchAttempted && (
-        <p className="booking-app-fallback" role="status">
-          If the app didn't open, it may not be installed on this device. The App Store download link will be added here as soon as the public listing is available.
-        </p>
-      )}
+  <p className="booking-app-fallback" role="status">
+    Opening the Nick's Doggy Daycare app…
+  </p>
+)}
 
       <p className="booking-app-note">
         New to Nick's Doggy Daycare? Go back and choose “I'm New Here” to get started.

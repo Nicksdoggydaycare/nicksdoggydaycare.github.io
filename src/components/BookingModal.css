@@ -192,12 +192,20 @@
 .booking-app-icon {
   flex: 0 0 auto;
   display: grid;
-  width: 58px;
-  height: 58px;
+  width: 100px;
+  height: 100px;
   place-items: center;
   border-radius: 16px;
   background: #234033;
   font-size: 1.7rem;
+}
+
+.booking-app-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .booking-app-copy h3 {
